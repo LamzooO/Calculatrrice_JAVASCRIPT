@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        fieldset {
+            width: 50%;
+            margin: 20px auto;
+            padding: 20px;
+            border: 2px solid #ccc;
+            border-radius: 10px;
+        }
+
+        form {
+
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        select,
+        .btn {
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+
+
+        .btn {
+            background-color: #4caf50;
+            color: white;
+            cursor: pointer;
+        }
+
+
+        #rest {
+            background-color: #f2f2f2;
+        }
+
+        .bin {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+
+<body>
+    <fieldset>
+        <form>
+            <label>Nombre 1</label>
+            <input type="text" id="nbr1"><br><br>
+            <label>Nombre 2</label>
+            <input type="text" id="nbr2"><br><br>
+            <label>Operateur</label>
+            <select type="text" id="op">
+                <option value="s">Somme</option>
+                <option value="dif">Difference</option>
+                <option value="p">Produit</option>
+                <option value="div">Division</option>
+            </select>
+            <input type="button" class="btn" onclick="calcul()" value="VALIDER"><br><br>
+            <label>Resultat</label>
+            <input type="text" id="rest" disabled><br><br>
+
+
+            <label>Decimal</label>
+            <input type="text" id="dec" onmouseout="calculB()"><br><br>
+            <label>Binaire</label>
+            <input type="text" id="bin" disabled><br><br>
+        </form>
+    </fieldset>
+
+</body>
+
+<script>
+
+    function calcul() {
+        let nombre1 = parseInt(document.getElementById("nbr1").value);
+        let nombre2 = parseInt(document.getElementById("nbr2").value);
+        var choix = document.getElementById("op").value;
+        let resultat;
+
+        switch (choix) {
+            case "s":
+                resultat = nombre1 + nombre2;
+                break;
+            case "dif":
+                resultat = nombre1 - nombre2;
+                break;
+            case "p":
+                resultat = nombre1 * nombre2;
+                break;
+            case "div":
+                if (nombre2 !== 0) {
+                    resultat = nombre1 / nombre2;
+                }
+                break;
+            default:
+                break;
+        }
+        document.getElementById("rest").value = resultat;
+
+    }
+
+    function calculB() {
+        var recupDecmial = parseInt(document.getElementById("dec").value);
+        var R_Binaire = recupDecmial.toString(2);
+
+        document.getElementById("bin").value = R_Binaire;
+
+    }
+</script>
+
+</html>
